@@ -1,0 +1,624 @@
+// BEGIN COMMON STYLES
+@font-face {
+  font-family: "Museo Sans Cyrl 100";
+  src: url("./fonts/museosanscyrl-100.woff2");
+}
+
+@font-face {
+  font-family: "Museo Sans Cyrl 300";
+  src: url("./fonts/museosanscyrl-300.woff2");
+}
+
+@font-face {
+  font-family: "Museo Sans Cyrl 700";
+  src: url("./fonts/museosanscyrl-700.woff2");
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+  overflow-x: hidden;
+}
+
+* {
+  font-size: 16px;
+  font-family: "Museo Sans Cyrl 300";
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+p {
+  margin: 0;
+}
+
+.btn {
+  border: 0;
+  outline: 0;
+  display: block;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.box {
+  box-sizing: border-box;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 1230px;
+  min-width: 360px;
+  width: 100%;
+  @media(max-width: 1200px) {
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+}
+
+// END COMMON STYLES
+
+// BEGIN NAVIGATION STYLES
+.icon-bar {
+  background-color: #ffffff;
+  display: block;
+  width: 27px;
+  height: 2px;
+
+  &--second {
+    margin-top: 5px;
+    width: 20px;
+  }
+
+  &--third {
+    margin-top: 5px;
+    width: 12px;
+  }
+}
+.navbar-toggle {
+  border-color: #fff;
+  position: relative;
+  width: 27px;
+  height: 27px;
+  padding-left: 4px;
+  background-color: transparent;
+  background-image: none;
+  border: none;
+  cursor: pointer;
+  @media(min-width: 1200px) {
+    display: none;
+  }
+}
+
+.header {
+  position: fixed;
+  z-index: 100000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  color: #fff;
+  &.top {
+    background-color: hsla(0,0%,8%,.64);
+    -webkit-backdrop-filter: blur(24px);
+    backdrop-filter: blur(24px);
+    z-index: 10;
+  }
+  &.open {
+    background-color: hsla(0,0%,8%,.64);
+    -webkit-backdrop-filter: blur(24px);
+    backdrop-filter: blur(24px);
+    height: 100vh;
+    z-index: 10;
+    & .icon-bar--first { 
+      width: 27px;
+      transform: translate(5px, -6px) rotate(45deg);
+      transform-origin: left top;
+      position: relative;
+      top: 4.5px;
+      left: -2px;
+    }
+    
+    & .icon-bar--second {
+      display: none;
+    }
+
+    & .icon-bar--third {
+      width: 27px;
+      transform: translate(-1px, -14px) rotate(-45deg);
+      transform-origin: right bottom;
+      position: relative;
+      top: 4px;
+      left: -4px;
+    }
+
+    & .header__nav-list {
+      opacity: 1;
+      visibility: visible;
+      height: auto;
+      margin-top: 20px;
+    }
+  }
+
+    &__logo img {
+      @media(max-width: 768px) {
+        max-width: 195px;
+        height: auto;
+      }
+  }
+
+  &__box {
+    transition-property: padding-top,padding-bottom;
+    transition-duration: .125s;
+    transition-timing-function: ease;
+  }
+
+  &__nav-list {
+    display: flex;
+    line-height: 1.37;
+    @media(max-width: 1200px) {
+      flex-direction: column;
+      width: 100%;
+      opacity: 0;
+      visibility: hidden;
+      transition: .2s;
+      height: 0;
+    }
+  }
+
+  &__topbar {
+    @media(max-width: 1200px) {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+  }
+
+  &__nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 26px;
+    padding-bottom: 40px;
+    @media(max-width: 1200px) {
+      height: 100%;
+      flex-direction: column;
+      align-items: flex-start;
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+  }
+
+  &__nav-item {
+    @media(max-width: 1200px) {
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+  }
+
+  &__nav-item:not(:first-of-type) {
+    margin-left: 45px;
+
+    @media(max-width: 1200px) {
+      margin-left: 0;
+    }
+  }
+
+  &__link {
+    position: relative;
+    transition-property: padding-top,padding-bottom;
+    transition-duration: .125s;
+    transition-timing-function: ease;
+    padding-right: 5px;
+    display: block;
+    @media(max-width: 1200px) {
+      font-size: 20px;
+    }
+
+    @media(min-width: 1200px) {
+      &:before {
+        content: "";
+        display: flex;
+        font-size: 0.75rem;
+        line-height: 1.25;
+        text-transform: uppercase;
+        position: absolute;
+        bottom: -7px;
+        left: 0;
+        right: 0;
+        width: 0;
+        height: 1px;
+        transition-property: width;
+        transition-duration: .3s;
+        transition-timing-function: ease;
+        background-color: #3d3d3d;
+      }
+
+      &:hover {
+        color: #b1b1b1;
+      }
+  
+      &:hover.header__link:before {
+        width: 100%;
+      }
+
+    }
+  }
+
+  &__logo-wrapper {
+    position: relative;
+    padding: 26px 15px 40px 25px;
+    @media(max-width: 1200px) {
+      padding: 0px 15px 10px 25px;
+    }
+
+    &::after,
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      height: 100%;
+      width: 1px;
+      background-color: #989393;
+      opacity: 0.21;
+    }
+
+    &:after {
+      left: 0;
+    }
+
+    &:before {
+      right: 0;
+    }
+
+    &:hover .corner--1,
+    &:hover .corner--3 {
+      width: 70%;
+      height: 70%;
+    }
+
+    &:hover .corner--2,
+    &:hover .corner--4 {
+      width: 30%;
+      height: 30%;
+    }
+  }
+}
+
+.corner {
+  position: absolute;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  width: 0;
+  height: 0;
+  transition: .3s;
+  width: 7px;
+  height: 7px;
+  border-color: #ffffff;
+
+  &--1 {
+    top:0; 
+    left:0;
+    border-right: none; 
+    border-bottom: none;
+  }
+
+  &--2 {
+    top:0; 
+    right:0; 
+    border-left: none; 
+    border-bottom: none;
+  }
+
+  &--3 {
+    bottom:0; 
+    right:0; 
+    border-top: none; 
+    border-left: none;
+  }
+
+  &--4 {
+    bottom:0; 
+    left:0; 
+    border-top: none; 
+    border-right: none;
+  }
+}
+
+// END NAVIGATION STYLES
+
+// BEGIN INTRO STYLES
+.intro {
+  background-image: url('./images/bg.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 660px;
+  position: relative;
+  @media(max-width: 1200px) {
+    height: 100vh;
+  }
+
+  @media(max-width: 768px) {
+    height: 100%;
+  }
+
+  &__box {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    @media(max-width: 1200px) {
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 100px;
+    }
+  }
+
+  &__title {
+    background-image: linear-gradient(-90.0deg, #ff3f04 0%, #ffffff 90%, #ffffff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-top: 217px;
+    margin-left: calc(36% - 430px);
+    @media(max-width: 1200px) {
+      margin-left: 0;
+      margin-top: 130px;
+      background-image: linear-gradient(#ffffff, #ff3f04);
+      text-align: center;
+    }
+
+    & h1 {
+      font-family: 'Museo Sans Cyrl 700';
+      font-size: 58px;
+      line-height: 1.2;
+      text-transform: uppercase;
+      color: #ffffff;
+      margin: 0;
+      @media(max-width: 1200px) {
+        font-size: 48px;
+      }
+
+      @media(max-width: 768px) {
+        font-size: 36px;
+      }
+    }
+
+    & span {
+      position: absolute;
+      font-size: inherit;
+      background: linear-gradient(118deg, #ff3f04 40%, transparent 60%);
+      -webkit-background-clip: text;
+      color: transparent;
+      @media(max-width: 1200px) {
+        background: none;
+        position: static;
+      }
+    }
+    &::after {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      width: 1em;
+    }
+    & p {
+      font-size: 25px;
+      font-weight: "Museo Sans Cyrl 300";
+      text-transform: none;
+      @media(max-width: 768px) {
+        font-size: 18px;
+      }
+    }
+  }
+}
+
+
+.description {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -5px;
+  max-width: 390px;
+  margin-top: 151px;
+  @media(max-width: 1200px) {
+    max-width: 100%;
+    justify-content: space-around;
+    margin-top: 50px;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 5px;
+    width: 185px;
+    height: 185px;
+    color: #ffffff;
+    position: relative;
+    cursor: pointer;
+    border-width: 1px;
+    border: solid;
+    border-color: transparent;
+    @media(max-width: 768px) {
+      height: 160px;
+    }
+
+    &:hover {
+      border-right: 1px;
+      border-bottom: 1px;
+      border-image-slice: 1;
+      border-image-width: 1px;
+    }
+
+    &:hover:first-of-type {
+      border-image: linear-gradient(to right bottom, transparent 50%, rgba(161,161,161, 0.3) 90%);
+      border-image-slice: 1;
+      border-image-width: 1px;
+    }
+
+    &:hover:nth-of-type(2) {
+      border-right: 1px;
+      border-bottom: 1px;
+      border-image: linear-gradient(to left bottom, transparent 50%, rgba(161,161,161, 0.3) 90%);
+      border-image-slice: 1;
+      border-image-width: 1px;
+    }
+
+    &:hover:nth-of-type(3) {
+      border-image: linear-gradient(to right top, transparent 50%, rgba(161,161,161, 0.3) 90%);
+      border-image-slice: 1;
+      border-image-width: 1px;
+    }
+
+    &:hover:nth-of-type(4) {
+      border-image: linear-gradient(to left top, transparent 50%, rgba(161,161,161, 0.3) 90%);
+      border-image-slice: 1;
+      border-image-width: 1px;
+    }
+
+
+    &:first-of-type .description__bg {
+      background-image: linear-gradient(to top left, #a1a1a1 0%, transparent 100%);
+    }
+
+    &:nth-of-type(2) .description__bg {
+      background-image: linear-gradient(to top right, #a1a1a1 0%, transparent 100%);
+    }
+    
+    &:nth-of-type(3) .description__bg {
+      background-image: linear-gradient(to bottom left, #a1a1a1 0%, transparent 100%);
+    }
+
+    &:nth-of-type(4) .description__bg {
+      background-image: linear-gradient(to bottom right, #a1a1a1 0%, transparent 100%);
+    }
+
+    @media(max-width: 768px) {
+      &:first-of-type .description__bg ,
+      &:nth-of-type(2) .description__bg ,
+      &:nth-of-type(3) .description__bg ,
+      &:nth-of-type(4) .description__bg { 
+        background-image: linear-gradient(to top left, #000 0%, transparent 100%);
+        opacity: 0.3;
+      }
+    }
+
+    &:hover .description__bg {
+      opacity: 0.065;
+    }
+  }
+
+  &__bg {
+    position: absolute;
+    width: 101%;
+    height: 101%;
+    left: -2px;
+    right: -2px;
+    top: -2px;
+    bottom: 0;
+    opacity: 0.03;
+  }
+
+  &__text {
+    font-family: 'Museo Sans Cyrl 100';
+    font-size: 18px;
+    line-height: 1.2;
+    font-weight: 100;
+  }
+
+  &__num {
+    font-family: "Museo Sans Cyrl 700";
+    font-size: 60px;
+    margin-top: 26px;
+    margin-bottom: 12px;
+    @media(max-width: 768px) {
+      font-size: 48px;
+      margin-top: 10px;
+      margin-bottom: 3px;
+    }
+
+    &.description__text {
+      font-family: "Museo Sans Cyrl 700";
+    }
+  }
+}
+
+.pointer {
+  position: absolute;
+  width: 415px;
+  height: 50px;
+  left: 0;
+  top: 0;
+}
+
+.btn-actions {
+  &__item {
+    position: absolute;
+    width: 180px;
+    height: 35px;
+    left: 30px;
+    bottom: 20%;
+    background-color: #000;
+    padding: 0;
+    border: 1px solid;
+    color: #ffffff;
+    font-family: "Museo Sans Cyrl 100";
+    border-width: 1px;
+    border-image-source: linear-gradient(189.0deg, #263e66 20%, #09213d 40%, #111f2d 61%, #23599c 79%);
+    border-image-slice: 1;
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    @media(max-width: 1200px) {
+      left: calc(50% - 90px);
+      bottom: initial;
+      top: 100%;
+    }
+
+    @media(max-width: 768px) {
+      top: calc(100% - 35px - 30px);
+    }
+
+    &:hover .blur {
+      top: -4px;
+      right: -4px;
+      bottom: -4px;
+      left: -4px;
+    }
+
+    &:hover span {
+      opacity: 1;
+    }
+
+    & span {
+      opacity: 0.5;
+      transition: .2s;
+    }
+
+    & .corner {
+      width: 4px;
+      height: 4px;
+    }
+  }
+}
+
+.blur {
+  background: white;
+  filter: blur(8px);
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  bottom: -2px;
+  left: -2px;
+  transition: .2s;
+}
+// END INTRO STYLES
